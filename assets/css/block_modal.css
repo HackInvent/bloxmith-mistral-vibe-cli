@@ -1,0 +1,294 @@
+.cw-mistral-vibe-modal {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(1480px, calc(100vw - 32px));
+}
+
+.cw-mistral-vibe-modal .modal-header,
+.cw-mistral-vibe-modal .mistral-vibe-modal-footer {
+  padding-inline: 24px;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-body {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  min-height: min(80vh, 880px);
+  overflow: hidden;
+  background: #fff8f2;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-tablist {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  padding: 18px 14px;
+  border-right: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-tab {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  min-height: 58px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--muted);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-tab span,
+.cw-mistral-vibe-modal .mistral-vibe-modal-tab small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-tab span {
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-tab small {
+  font-size: 0.76rem;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-tab[aria-selected="true"] {
+  border-color: rgba(245, 112, 72, 0.52);
+  background: #fff2eb;
+  color: #a13b16;
+  box-shadow: inset 3px 0 0 #f57048;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-tab:focus-visible {
+  outline: none;
+  border-color: rgba(245, 112, 72, 0.76);
+  box-shadow: 0 0 0 4px rgba(245, 112, 72, 0.14);
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-panels,
+.cw-mistral-vibe-modal .mistral-vibe-modal-panel {
+  min-width: 0;
+  min-height: 0;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-panels {
+  overflow: hidden;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-panel {
+  height: 100%;
+  overflow: auto;
+  padding: 22px 24px;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-panel[hidden] {
+  display: none;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-attributes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-section,
+.cw-mistral-vibe-modal .mistral-vibe-output-editor,
+.cw-mistral-vibe-modal .mistral-vibe-reference-panel,
+.cw-mistral-vibe-modal .mistral-vibe-last-command-layout {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-section {
+  padding: 16px;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-config-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-tools-field {
+  grid-column: 1 / -1;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-output-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 320px);
+  gap: 18px;
+  min-height: 100%;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-output-editor {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: min(72vh, 800px);
+  padding: 18px;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-output-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-output-header h3 {
+  margin: 4px 0 2px;
+  font-size: 1.15rem;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-output-header p,
+.cw-mistral-vibe-modal .mistral-vibe-last-command-header p,
+.cw-mistral-vibe-modal .mistral-vibe-last-command-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-instruction-field {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+  margin-bottom: 0;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-instruction-field textarea {
+  min-height: min(56vh, 620px);
+  resize: vertical;
+  font-family: var(--mono);
+  font-size: 0.94rem;
+  line-height: 1.58;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-reference-panel {
+  align-self: start;
+  padding: 16px;
+  position: sticky;
+  top: 0;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-reference-list {
+  display: grid;
+  gap: 10px;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-reference-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fffaf6;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-reference-row code {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-reference-row strong,
+.cw-mistral-vibe-modal .mistral-vibe-reference-row small {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-last-command-layout {
+  display: grid;
+  gap: 16px;
+  min-height: min(72vh, 800px);
+  padding: 18px;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-last-command-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-last-command-output {
+  min-height: min(60vh, 660px);
+  max-height: min(60vh, 660px);
+  margin: 0;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #171014;
+  color: #ffe8dd;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  padding: 14px;
+}
+
+.cw-mistral-vibe-modal .mistral-vibe-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 14px;
+  border-top: 1px solid var(--line);
+  background: #ffffff;
+}
+
+@media (max-width: 1180px) {
+  .cw-mistral-vibe-modal .mistral-vibe-attributes-grid,
+  .cw-mistral-vibe-modal .mistral-vibe-config-grid,
+  .cw-mistral-vibe-modal .mistral-vibe-output-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cw-mistral-vibe-modal .mistral-vibe-reference-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 860px) {
+  .cw-mistral-vibe-modal {
+    width: min(100%, calc(100vw - 16px));
+  }
+
+  .cw-mistral-vibe-modal .mistral-vibe-modal-body {
+    grid-template-columns: minmax(0, 1fr);
+    overflow: auto;
+  }
+
+  .cw-mistral-vibe-modal .mistral-vibe-modal-tablist {
+    display: flex;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cw-mistral-vibe-modal .mistral-vibe-modal-tab {
+    min-width: 180px;
+  }
+
+  .cw-mistral-vibe-modal .mistral-vibe-modal-panel {
+    overflow: visible;
+    padding: 16px;
+  }
+}

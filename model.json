@@ -1,0 +1,51 @@
+{
+  "kind": "mistral_vibe_cli",
+  "title": "Mistral Vibe CLI",
+  "ports": {
+    "inputs": [
+      {
+        "id": 1,
+        "name": "in",
+        "title": "In",
+        "accepts": [
+          "message/*",
+          "text/plain",
+          "application/json"
+        ],
+        "multiplicity": "many",
+        "required": false,
+        "execution_requirement": "required_for_execution"
+      }
+    ],
+    "outputs": [
+      {
+        "id": 1,
+        "name": "out",
+        "title": "Out",
+        "emits": [
+          "message/*",
+          "text/plain"
+        ],
+        "multiplicity": "many",
+        "instruction": ""
+      }
+    ]
+  },
+  "config": {
+    "vibe_binary": "vibe",
+    "max_turns": 0,
+    "max_price": "",
+    "output_format": "text",
+    "enabled_tools": "",
+    "extra_args": "",
+    "timeout_sec": 300,
+    "max_prompt_chars": 250000
+  },
+  "runtime": {
+    "initial_state": "waiting",
+    "runtime_executable": true,
+    "active_worker": true,
+    "centralized_executor": "generic",
+    "centralized_dependency_mode": "all_inputs"
+  }
+}

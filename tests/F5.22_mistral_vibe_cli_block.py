@@ -50,6 +50,8 @@ from ui_smoke_common import (
     text_node,
     wait_for_run_terminal,
 )
+from urllib.parse import quote
+from block_test_packages import install_test_package, release_key, surface_payload
 
 
 @contextmanager
@@ -160,6 +162,11 @@ def run_mistral_vibe_case(runtime_mode: str) -> None:
 
     with fake_vibe_cli(response_text=f"fake vibe {runtime_mode}") as capture_path:
         with isolated_server() as server:
+            # Les surfaces sont des assets de release : le bundled kind n'en sert aucun.
+            model = install_test_package(server, "mistral_vibe_cli")
+            key = quote(release_key(model), safe="")
+            served = lambda payload, suffix: next(
+                asset["path"] for asset in payload["assets"] if asset["path"].endswith(suffix))
             document = graph_payload(
                 f"F5 Mistral Vibe CLI {runtime_mode}",
                 [
@@ -258,10 +265,8 @@ def test_mistral_vibe_cli_ui_contract() -> None:
     expect('data-block-config-field="output_format"' in html, "Output format doit etre editable.")
     expect('data-block-config-field="enabled_tools"' in html, "Enabled tools doit etre editable.")
     expect('data-block-config-field="extra_args"' in html, "Les arguments additionnels doivent etre editables.")
-    expect({"kind": "css", "path": "assets/css/block_modal.css"} in assets, "Le CSS modal Mistral Vibe doit etre declare.")
-    expect({"kind": "js", "path": "assets/js/block_modal.js"} in assets, "Le JS modal Mistral Vibe doit etre declare.")
     expect(".mistral-vibe-modal-panel[hidden]" in css, "Le CSS doit cacher les panels inactifs.")
-    expect("registry.mistral_vibe_cli" in js, "Le JS doit monter le modal via le registre block UI.")
+    expect("export function mount" in js, "Le JS doit monter le modal via le registre block UI.")
 
     inspector = render_block_inspector_panel("mistral_vibe_cli", {"node": node})
     inspector_html = str(inspector.get("html") or "")

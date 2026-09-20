@@ -48,16 +48,6 @@ class MistralVibeCliBlock(BlockDefinition):
     """Autonomous block implementation for `MistralVibeCliBlock`."""
     kind = "mistral_vibe_cli"
 
-    def ui_assets(self, surface: str = "modal") -> list[dict[str, str]]:
-        """Return Mistral Vibe CLI owned UI assets for the requested surface."""
-
-        if surface == "modal":
-            return [
-                {"kind": "css", "path": "assets/css/block_modal.css"},
-                {"kind": "js", "path": "assets/js/block_modal.js"},
-            ]
-        return []
-
     def render_node_card(self, *, node: dict[str, Any], payload: dict[str, Any] | None = None) -> dict[str, Any]:
         """Render the Mistral Vibe CLI canvas card from the block-owned template."""
 

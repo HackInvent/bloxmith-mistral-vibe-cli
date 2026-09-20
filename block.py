@@ -446,14 +446,14 @@ class MistralVibeCliBlock(BlockDefinition):
                 '<label>Instruction</label>'
                 '<textarea data-mistral-vibe-modal-instruction data-block-output-field="instruction" '
                 f'data-block-output-port-id="{escape(str(port_id), quote=True)}" rows="24" spellcheck="false" '
-                'placeholder="Decris ce que Mistral Vibe doit produire avec les inputs recus.">'
+                'placeholder="Describe what Mistral Vibe must produce from the received inputs.">'
                 f'{escape(instruction)}'
                 '</textarea>'
                 '</div>'
                 '</div>'
                 '<aside class="mistral-vibe-reference-panel">'
                 '<div class="ports-editor-header"><span class="group-label">Inputs disponibles</span></div>'
-                '<p class="field-hint">Les inputs sont inclus automatiquement dans le prompt.</p>'
+                '<p class="field-hint">Inputs are included in the prompt automatically.</p>'
                 f'{self._render_input_references(node)}'
                 '</aside>'
                 '</div>'
@@ -547,7 +547,7 @@ class MistralVibeCliBlock(BlockDefinition):
             '<div class="field-group">'
             '<label>Max price</label>'
             f'<input data-block-config-field="max_price" type="text" autocomplete="off" spellcheck="false" '
-            f'placeholder="vide = pas de limite" value="{escape(config["max_price"], quote=True)}" />'
+            f'placeholder="empty = no limit" value="{escape(config["max_price"], quote=True)}" />'
             '</div>'
             '<div class="field-group">'
             '<label>Output format</label>'
@@ -556,7 +556,7 @@ class MistralVibeCliBlock(BlockDefinition):
             '<div class="field-group mistral-vibe-tools-field">'
             '<label>Enabled tools</label>'
             f'<textarea data-block-config-field="enabled_tools" rows="3" spellcheck="false" '
-            f'placeholder="Un outil par ligne, ou separe par virgule.">{escape(config["enabled_tools"])}</textarea>'
+            f'placeholder="One tool per line, or comma separated.">{escape(config["enabled_tools"])}</textarea>'
             '</div>'
             '<div class="field-group">'
             '<label>Arguments additionnels</label>'
@@ -574,7 +574,7 @@ class MistralVibeCliBlock(BlockDefinition):
             f'min="1" max="{MAX_PROMPT_CHARS}" step="1000" value="{config["max_prompt_chars"]}" />'
             '</div>'
             '</div>'
-            '<p class="field-hint">Le runtime lance <code>vibe --prompt &lt;prompt&gt;</code>. Les options sont ajoutees seulement si renseignees.</p>'
+            '<p class="field-hint">The runtime runs <code>vibe --prompt &lt;prompt&gt;</code>. Options are added only when they are set.</p>'
         )
 
     def _render_title_field(self, title: str) -> str:
@@ -582,7 +582,7 @@ class MistralVibeCliBlock(BlockDefinition):
 
         return (
             '<div class="field-group">'
-            '<label>Nom du bloc</label>'
+            '<label>Block name</label>'
             f'<input data-block-title-field type="text" autocomplete="off" value="{escape(title, quote=True)}" />'
             '</div>'
         )
@@ -592,7 +592,7 @@ class MistralVibeCliBlock(BlockDefinition):
 
         inputs = node.get("inputs") if isinstance(node.get("inputs"), list) else []
         if not inputs:
-            return '<div class="ports-editor-empty">Aucune entree disponible.</div>'
+            return '<div class="ports-editor-empty">No input available.</div>'
         rows: list[str] = []
         for index, port in enumerate(inputs):
             if not isinstance(port, dict):
@@ -631,13 +631,13 @@ class MistralVibeCliBlock(BlockDefinition):
             '<div class="mistral-vibe-last-command-layout">'
             '<div class="mistral-vibe-last-command-header">'
             '<div>'
-            '<span class="group-label">Derniere commande</span>'
+            '<span class="group-label">Last command</span>'
             '<h3>Last cmd</h3>'
-            '<p>Commande Mistral Vibe CLI preparee par le runtime pour la derniere execution.</p>'
+            '<p>Mistral Vibe CLI command prepared by the runtime for the last execution.</p>'
             '</div>'
             f'<button class="ghost-btn mistral-vibe-last-command-copy{command_class}" data-block-modal-copy="#{command_source_id}" type="button">Copier</button>'
             '</div>'
-            f'<p class="mistral-vibe-last-command-empty{empty_class}">Aucune commande Mistral Vibe CLI enregistree pour ce bloc.</p>'
+            f'<p class="mistral-vibe-last-command-empty{empty_class}">No Mistral Vibe CLI command recorded for this block.</p>'
             f'<pre class="mistral-vibe-last-command-output{command_class}" id="{command_source_id}" data-block-modal-copy-source>{escape(command)}</pre>'
             '</div>'
             '</section>'

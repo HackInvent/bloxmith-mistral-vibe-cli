@@ -16,12 +16,12 @@
 
   <div class="inspector-view {{ general_hidden }}" data-inspector-panel-tab="general">
     <div class="field-group {{ title_hidden }}">
-      <label>Nom du node</label>
+      <label>Node name</label>
       <input data-node-title-input type="text" placeholder="{{ node_title_placeholder }}" value="{{ node_title }}" />
     </div>
     <div class="field-group">
       <label>Instruction</label>
-      <textarea data-block-output-field="instruction" data-block-output-port-id="{{ instruction_output_id }}" rows="10" spellcheck="false" placeholder="Instruction envoyee a Mistral Vibe avec les inputs recus.">{{ instruction }}</textarea>
+      <textarea data-block-output-field="instruction" data-block-output-port-id="{{ instruction_output_id }}" rows="10" spellcheck="false" placeholder="Instruction sent to Mistral Vibe with the received inputs.">{{ instruction }}</textarea>
     </div>
     <div class="field-grid">
       <div class="field-group">
@@ -34,7 +34,7 @@
       </div>
       <div class="field-group">
         <label>Max price</label>
-        <input data-block-config-field="max_price" type="text" autocomplete="off" spellcheck="false" placeholder="vide = pas de limite" value="{{ max_price }}" />
+        <input data-block-config-field="max_price" type="text" autocomplete="off" spellcheck="false" placeholder="empty = no limit" value="{{ max_price }}" />
       </div>
       <div class="field-group">
         <label>Output format</label>
@@ -42,7 +42,7 @@
       </div>
       <div class="field-group">
         <label>Enabled tools</label>
-        <textarea data-block-config-field="enabled_tools" rows="3" spellcheck="false" placeholder="Un outil par ligne, ou separe par virgule.">{{ enabled_tools }}</textarea>
+        <textarea data-block-config-field="enabled_tools" rows="3" spellcheck="false" placeholder="One tool per line, or comma separated.">{{ enabled_tools }}</textarea>
       </div>
       <div class="field-group">
         <label>Arguments additionnels</label>
@@ -57,33 +57,33 @@
         <input data-block-config-field="max_prompt_chars" data-block-value-type="integer" type="number" min="1" step="1000" value="{{ max_prompt_chars }}" />
       </div>
     </div>
-    <p class="inspector-copy">Commande runtime: <code>vibe --prompt &lt;prompt&gt;</code>. Les options programmatiques sont ajoutees uniquement si renseignees.</p>
+    <p class="inspector-copy">Commande runtime: <code>vibe --prompt &lt;prompt&gt;</code>. The programmatic options are added only when they are set.</p>
     <div class="inspector-actions {{ actions_hidden }}">
-      <button class="solid-btn" data-block-apply type="button" disabled>Appliquer</button>
-      <button class="ghost-btn {{ duplicate_hidden }}" data-block-action="duplicate" type="button">Dupliquer</button>
-      <button class="danger-btn {{ delete_hidden }}" data-block-action="delete" type="button">Supprimer le bloc</button>
+      <button class="solid-btn" data-block-apply type="button" disabled>Apply</button>
+      <button class="ghost-btn {{ duplicate_hidden }}" data-block-action="duplicate" type="button">Duplicate</button>
+      <button class="danger-btn {{ delete_hidden }}" data-block-action="delete" type="button">Delete the block</button>
     </div>
   </div>
 
   <div class="inspector-view {{ ports_hidden }}" data-inspector-panel-tab="ports">
     <div class="ports-editor-section">
       <div class="ports-editor-header">
-        <span class="group-label">Entrees</span>
+        <span class="group-label">Inputs</span>
         <span class="ports-editor-actions">
-          <button class="ghost-btn add-port-btn {{ add_input_hidden }}" data-add-input-port type="button" {{ add_input_disabled }}>+ Ajouter une entree</button>
+          <button class="ghost-btn add-port-btn {{ add_input_hidden }}" data-add-input-port type="button" {{ add_input_disabled }}>+ Add an input</button>
         </span>
       </div>
       <div class="ports-editor-list">{{ inputs_html }}</div>
     </div>
     <div class="ports-editor-section">
       <div class="ports-editor-header">
-        <span class="group-label">Sorties</span>
-        <button class="ghost-btn add-port-btn {{ add_output_hidden }}" data-add-output-port type="button" {{ add_output_disabled }}>+ Ajouter une sortie</button>
+        <span class="group-label">Outputs</span>
+        <button class="ghost-btn add-port-btn {{ add_output_hidden }}" data-add-output-port type="button" {{ add_output_disabled }}>+ Add an output</button>
       </div>
       <div class="ports-editor-list">{{ outputs_html }}</div>
     </div>
     <div class="inspector-copy">
-      Chaque sortie peut porter sa propre instruction dans le modal.
+      Each output can carry its own instruction in the modal.
     </div>
   </div>
 </div>

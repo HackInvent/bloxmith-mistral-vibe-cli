@@ -186,17 +186,17 @@ def run_mistral_vibe_case(runtime_mode: str) -> None:
         expect(run.get("status") == "success", f"The Mistral Vibe CLI {runtime_mode} run must succeed.")
         expect(run.get("output_values", {}).get("mistral-vibe-1:1", {}).get("value").strip() == f"fake vibe {runtime_mode}", "stdout Mistral Vibe CLI incorrect.")
         argv = calls[-1].get("argv", []) if calls else []
-        expect("--prompt" in argv, "Mistral Vibe CLI doit etre appele avec --prompt.")
-        expect("--max-turns" in argv and "5" in argv, "Le nombre max de tours doit etre transmis.")
-        expect("--max-price" in argv and "1.25" in argv, "La limite de prix doit etre transmise.")
-        expect(argv.count("--enabled-tools") == 3, "Les outils actives doivent etre transmis chacun avec --enabled-tools.")
-        expect("--output" in argv and "json" in argv, "Le format de sortie doit etre transmis.")
-        expect("--agent" in argv and "plan" in argv, "Les arguments additionnels doivent etre transmis.")
+        expect("--prompt" in argv, "Mistral Vibe CLI must be called with --prompt.")
+        expect("--max-turns" in argv and "5" in argv, "The maximum number of turns must be forwarded.")
+        expect("--max-price" in argv and "1.25" in argv, "The price limit must be forwarded.")
+        expect(argv.count("--enabled-tools") == 3, "Each enabled tool must be forwarded with --enabled-tools.")
+        expect("--output" in argv and "json" in argv, "The output format must be forwarded.")
+        expect("--agent" in argv and "plan" in argv, "The additional arguments must be forwarded.")
         prompt = str(calls[-1].get("prompt") or "")
         expect("hello vibe" in prompt, "The Mistral Vibe CLI prompt must contain the 'input texte.")
         expect("Return a concise Mistral Vibe answer" in prompt, "The Mistral Vibe CLI prompt must contain the 'instruction.")
         logs = "\n".join(run.get("node_logs", {}).get("mistral-vibe-1", []))
-        expect("[mistral-vibe-cmd]" in logs and " --prompt " in logs, "Les logs doivent exposer la commande Mistral Vibe CLI avec --prompt.")
+        expect("[mistral-vibe-cmd]" in logs and " --prompt " in logs, "The logs must expose the Mistral Vibe CLI command with --prompt.")
 
 
 def test_multiple_outputs_and_prompt_guard() -> None:
@@ -253,20 +253,20 @@ def test_mistral_vibe_cli_ui_contract() -> None:
     css = (ROOT / "blocs/mistral_vibe_cli/assets/css/block_modal.css").read_text(encoding="utf-8")
     js = (ROOT / "blocs/mistral_vibe_cli/assets/js/block_modal.js").read_text(encoding="utf-8")
 
-    expect("cw-mistral-vibe-modal" in html, "Le modal Mistral Vibe CLI doit venir du bloc.")
-    expect('data-block-runtime-refresh="autonomous"' in html, "Le modal Mistral Vibe CLI doit gerer son refresh runtime.")
+    expect("cw-mistral-vibe-modal" in html, "The Mistral Vibe CLI modal must come from the block.")
+    expect('data-block-runtime-refresh="autonomous"' in html, "The Mistral Vibe CLI modal must own its runtime refresh.")
     expect('data-mistral-vibe-tab-id="output-1"' in html, "The modal must expose the output instruction tab.")
-    expect('data-mistral-vibe-tab-id="attributes"' in html, "Le modal doit exposer l'onglet Attributs.")
-    expect('data-mistral-vibe-tab-id="last-cmd"' in html, "Le modal doit exposer l'onglet Last cmd.")
+    expect('data-mistral-vibe-tab-id="attributes"' in html, "The modal must expose the Attributs tab.")
+    expect('data-mistral-vibe-tab-id="last-cmd"' in html, "The modal must expose the Last cmd tab.")
     expect('data-block-output-field="instruction"' in html, "L'instruction doit rester liee a output.instruction.")
     expect('data-block-config-field="vibe_binary"' in html, "The Vibe binary must be editable.")
     expect('data-block-config-field="max_turns"' in html, "Max turns must be editable.")
     expect('data-block-config-field="max_price"' in html, "Max price must be editable.")
     expect('data-block-config-field="output_format"' in html, "Output format must be editable.")
     expect('data-block-config-field="enabled_tools"' in html, "Enabled tools must be editable.")
-    expect('data-block-config-field="extra_args"' in html, "Les arguments additionnels doivent etre editables.")
-    expect(".mistral-vibe-modal-panel[hidden]" in css, "Le CSS doit cacher les panels inactifs.")
-    expect("export function mount" in js, "Le JS doit monter le modal via le registre block UI.")
+    expect('data-block-config-field="extra_args"' in html, "The additional arguments must be editable.")
+    expect(".mistral-vibe-modal-panel[hidden]" in css, "The CSS must hide the inactive panels.")
+    expect("export function mount" in js, "The JS must mount the modal through the block UI registry.")
 
     inspector = render_block_inspector_panel("mistral_vibe_cli", {"node": node})
     inspector_html = str(inspector.get("html") or "")
@@ -275,7 +275,7 @@ def test_mistral_vibe_cli_ui_contract() -> None:
 
     card = render_block_node_card("mistral_vibe_cli", {"node": node})
     card_html = str(card.get("html") or "")
-    expect("data-mistral-vibe-cli-node-card" in card_html, "La node-card Mistral Vibe CLI doit venir du bloc.")
+    expect("data-mistral-vibe-cli-node-card" in card_html, "The Mistral Vibe CLI node card must come from the block.")
 
 
 def main() -> None:

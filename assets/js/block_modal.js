@@ -1,3 +1,5 @@
+import { withProperties } from "./properties.js";
+
 /**
  * Role: Mounts the Mistral Vibe CLI block modal frontend.
  * File Name: block_modal.js
@@ -5,7 +7,6 @@
  * Email: alex@hackinvent.com
  * Created Date: 2026-05-19
  */
-const previous = registry.mistral_vibe_cli || {};
 
 /**
  * Return Mistral Vibe modal tabs in DOM order.
@@ -76,8 +77,7 @@ function moveTab(root, current, direction) {
  * @param {object} api - Generic block UI API passed by the framework.
  * @param {object} context - Render context returned by block.py.
  */
-export function mount(root, api, context) {
-  previous.mount?.(root, api, context);
+function mountOwned(root, api, context) {
   const selected = root.querySelector('[data-mistral-vibe-modal-tab][aria-selected="true"]')
     || root.querySelector("[data-mistral-vibe-modal-tab]");
   activateTab(root, selected);
@@ -111,4 +111,9 @@ export function mount(root, api, context) {
       activateTab(root, tabs[tabs.length - 1], { focus: true });
     }
   });
+}
+
+/** Keep the block behavior and add properties-only accessibility. */
+export function mount(root, ...args) {
+  return withProperties(mountOwned).call(this, root, ...args);
 }

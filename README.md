@@ -8,6 +8,10 @@
 Verified BloxSmith versions: **1.0.9** (bundled-block tests; see [test evidence](compatibility.json)).
 <!-- block-metadata:end -->
 
+[![VIBE CLI — Runs locally installed Mistral Vibe CLI noninteractively and emits its response.](media/thumbnail.webp)](media/cover.png)
+
+*Concept illustration. [Artwork and generation prompt](media/README.md).*
+
 
 ## Role
 
